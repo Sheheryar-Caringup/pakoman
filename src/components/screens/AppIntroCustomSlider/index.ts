@@ -1,1 +1,2 @@
-export * from './AppIntroCustomSlider';
+import AppIntroCustomSlider from './AppIntroCustomSlider';
+export default AppIntroCustomSlider;

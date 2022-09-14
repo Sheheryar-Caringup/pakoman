@@ -26,14 +26,14 @@ const CustomDoubleButton = ({
         buttonText={primaryButtonText}
         handleOnPress={handlePrimaryOnPress}
         textColor={primaryTextColor}
-        extraStyles={[styles.button, primaryExtraStyles]}
+        extraStyles={[styles?.button, primaryExtraStyles]}
       />
       <CustomButton
         isDisabled={isDisabledSecondary}
         buttonText={secondaryButtonText}
         handleOnPress={handleSecondaryOnPress}
         textColor={secondaryTextColor}
-        extraStyles={[styles.buttonTransparent, secondaryExtraStyles]}
+        extraStyles={[styles?.buttonTransparent, secondaryExtraStyles]}
       />
     </>
   );

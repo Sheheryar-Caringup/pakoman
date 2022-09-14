@@ -1,32 +1,26 @@
-import React from 'react';
+import {colorConstants} from '../../../utils/constants/colorConstants';
+import {languageTxt} from '../../../utils/constants/languageTxt';
 
-import AtlasFundsLogo from '../../../assets/Icons/Splash/AtlasFunds.svg';
-import AtlasMeraj from '../../../assets/Icons/Splash/AtlasMeraj.svg';
-import AtlasPension from '../../../assets/Icons/Splash/AtlasPension.svg';
-import AtlasInvestment from '../../../assets/Icons/Splash/AtlasInvestment.svg';
-
-import {languageTxt} from '../../../utils/languageTxt';
-const slides = [
+export const slides = [
   {
     key: 1,
-    description: languageTxt.atlasFundsDescription,
-    image: <AtlasFundsLogo width={'100%'} height={150} />,
+    title: languageTxt?.pensionInvestorTitle,
+    text: languageTxt?.pensionInvestorDetail,
+    image: require('../../../assets/slider/1.png'),
+    bg: colorConstants?.primary,
   },
   {
     key: 2,
-    description: languageTxt.atlasMirajDescription,
-    image: <AtlasMeraj width={'100%'} height={150} />,
+    title: languageTxt?.corporateInvestorTitle,
+    text: languageTxt?.corporateInvestorDetail,
+    image: require('../../../assets/slider/2.png'),
+    bg: colorConstants?.gold,
   },
   {
     key: 3,
-    description: languageTxt.atlasPensionDescription,
-    image: <AtlasPension width={'100%'} height={150} />,
-  },
-  {
-    key: 4,
-    description: languageTxt.atlasInvestmentDescription,
-    image: <AtlasInvestment width={'100%'} height={150} />,
+    title: languageTxt?.individualInvestorTitle,
+    text: languageTxt?.individualInvestorDetail,
+    image: require('../../../assets/slider/3.png'),
+    bg: colorConstants?.primaryLight,
   },
 ];
-
-export {slides};

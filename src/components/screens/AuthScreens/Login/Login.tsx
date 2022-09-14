@@ -4,7 +4,7 @@ import {useForm, Controller} from 'react-hook-form';
 import {useNavigation} from '@react-navigation/native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 import {styles} from './styles';
 import {languageTxt} from '../../../../utils/constants/languageTxt';
@@ -88,18 +88,18 @@ const Login = () => {
   return (
     <>
       <Loader isLoading={isLoading} />
-      <KeyboardAwareScrollView style={styles.container}>
-        <View style={styles.logoContainer}>
-          <Image source={LogoIcon} style={styles.logo} />
+      <KeyboardAwareScrollView style={styles?.container}>
+        <View style={styles?.logoContainer}>
+          <Image source={LogoIcon} style={styles?.logo} />
         </View>
 
         {formError && (
-          <View style={styles.formValidation}>
+          <View style={styles?.formValidation}>
             <ValidationMessage children={formError} />
           </View>
         )}
 
-        <View style={styles.loginContainer}>
+        <View style={styles?.loginContainer}>
           <Controller
             control={control}
             render={({field: {onChange, onBlur, value}}) => (
@@ -139,13 +139,13 @@ const Login = () => {
                 rightIcon={() => (
                   <>
                     {passwordStatus ? (
-                      <MaterialCommunityIcons
+                      <Icon
                         name="eye-off-outline"
                         size={dimensionConstants?.iconSmall}
                         color={colorConstants?.gray}
                       />
                     ) : (
-                      <MaterialCommunityIcons
+                      <Icon
                         name="eye-outline"
                         size={dimensionConstants?.iconSmall}
                         color={colorConstants?.gray}
@@ -177,7 +177,10 @@ const Login = () => {
             primaryButtonText={languageTxt?.login}
             secondaryButtonText={languageTxt?.openAccount}
             // isDisabledPrimary={loginMutation?.isLoading}
-            handlePrimaryOnPress={handleSubmit(onSubmit)}
+            // handlePrimaryOnPress={handleSubmit(onSubmit)}
+            handlePrimaryOnPress={() => {
+              navigation.navigate(languageTxt?.reactStackKeys?.home);
+            }}
             handleSecondaryOnPress={() => {
               navigation.navigate(
                 languageTxt?.reactStackKeys?.auth?.register?.name,

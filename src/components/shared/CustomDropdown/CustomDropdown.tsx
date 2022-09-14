@@ -12,7 +12,7 @@ import {dimensionConstants} from '../../../utils/constants/dimensionConstants';
 import CustomInput from '../CustomInput';
 import CustomModal from '../CustomModal';
 
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 const CustomDropdown = ({
   placeHolder,
@@ -31,7 +31,7 @@ const CustomDropdown = ({
   return (
     <>
       <TouchableOpacity
-        activeOpacity={dimensionConstants.activeOpacity}
+        activeOpacity={dimensionConstants?.activeOpacity}
         onPress={() => setShowDropDown(true)}>
         <CustomInput
           disabled={true}
@@ -40,10 +40,10 @@ const CustomDropdown = ({
           placeHolder={placeHolder}
           value={value}
           rightIcon={() => (
-            <MaterialCommunityIcons
-              name="chevron-down"
-              size={dimensionConstants.iconSmall}
-              color={colorConstants.gray}
+            <Icon
+              name="chevron-down-outline"
+              size={dimensionConstants?.iconSmall}
+              color={colorConstants?.gray}
             />
           )}
           rightIconClick={() => setShowDropDown(true)}
@@ -70,12 +70,12 @@ const CustomDropdown = ({
                     key={key}
                     style={
                       value == item?.label && {
-                        backgroundColor: colorConstants.primary,
+                        backgroundColor: colorConstants?.primary,
                       }
                     }
                     titleStyle={
                       value == item?.label && {
-                        color: colorConstants.white,
+                        color: colorConstants?.white,
                       }
                     }
                     title={item?.label}

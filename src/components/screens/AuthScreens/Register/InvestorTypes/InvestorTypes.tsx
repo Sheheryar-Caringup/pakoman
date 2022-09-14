@@ -20,9 +20,9 @@ const InvestorTypes = () => {
   const navigation = useNavigation();
 
   return (
-    <KeyboardAwareScrollView style={styles.container}>
-      <View style={styles.logoContainer}>
-        <Image source={LogoIcon} style={styles.logo} />
+    <KeyboardAwareScrollView style={styles?.container}>
+      <View style={styles?.logoContainer}>
+        <Image source={LogoIcon} style={styles?.logo} />
 
         <CustomTitle
           title={languageTxt?.selectYourInvestmentTypeCap}
@@ -36,10 +36,10 @@ const InvestorTypes = () => {
         />
       </View>
 
-      <View style={styles.typeContainer}>
+      <View style={styles?.typeContainer}>
         <CustomRegisterCard
-          title="Register as a Corporate Investor"
-          description="Manage the investment of your Corporate Funds. From cash management to long term investments, we have options that are best suited to your institutional needs."
+          title={`${languageTxt?.registerAsA} ${languageTxt?.corporateInvestorTitle}`}
+          description={languageTxt?.corporateInvestorDetail}
           handleOnPress={() => {
             navigation.navigate(
               languageTxt?.reactStackKeys?.auth?.register?.name,
@@ -53,8 +53,8 @@ const InvestorTypes = () => {
         />
 
         <CustomRegisterCard
-          title="Register as an Individual Investor"
-          description="Manage your own Savings and Investments. The broad array of investment options offered by AGIML cover multiple risk/return profiles to enable you to make an investment appropriate for your needs."
+          title={`${languageTxt?.registerAsA} ${languageTxt?.individualInvestorTitle}`}
+          description={languageTxt?.individualInvestorDetail}
           handleOnPress={() => {
             navigation.navigate(
               languageTxt?.reactStackKeys?.auth?.register?.name,
@@ -68,8 +68,8 @@ const InvestorTypes = () => {
         />
 
         <CustomRegisterCard
-          title="Register as a Pension Investor"
-          description="Manage your employee retirement funds and endowment plans with confidence through our professional advisory services and wide product range."
+          title={`${languageTxt?.registerAsA} ${languageTxt?.pensionInvestorTitle}`}
+          description={languageTxt?.pensionInvestorDetail}
           handleOnPress={() => {
             navigation.navigate(
               languageTxt?.reactStackKeys?.auth?.register?.name,

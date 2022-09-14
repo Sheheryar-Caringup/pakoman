@@ -1,15 +1,17 @@
 export const dimensionConstants = {
   // Shadow
   shadowOffsetWidth: 0,
-  shadowOffsetHeight: 1,
-  shadowOpacity: 0.2,
-  shadowRadius: 1.41,
-  elevation: 2,
+  shadowOffsetHeight: 2,
+  shadowOpacity: 0.25,
+  shadowRadius: 3.84,
+  elevation: 5,
 
   splashLogo: 100,
 
   // Icon Size
-  iconSmall: 25,
+  iconXXSmall: 15,
+  iconXSmall: 20,
+  iconSmall: 26,
   iconMiddle: 30,
   iconLarge: 35,
   iconxLarge: 60,
@@ -28,6 +30,8 @@ export const dimensionConstants = {
   borderRadiusSmall: 5,
   borderRadius: 10,
   borderRadiusLarge: 20,
+  borderRadiusXLarge: 30,
+  borderRadiusXXLarge: 40,
 
   // Input Text
   errorTxtSize: 14,
@@ -46,17 +50,48 @@ export const dimensionConstants = {
 
   // activeOpacity
   activeOpacity: 0.8,
+  activeOpacityExtra: 0.5,
 
   // margin
+  marginXSmall: 6,
   marginSmall: 8,
   margin: 10,
+  marginMedium: 12,
   marginLarge: 15,
+  marginXLarge: 20,
+  marginXXLarge: 25,
+  marginXXXLarge: 30,
 
   marginImage: 120,
 
   // padding
+  paddingXXXSmall: 1,
+  paddingXXSmall: 2,
   paddingXSmall: 4,
   paddingSmall: 8,
   padding: 10,
+  paddingMiddle: 12,
   paddingLarge: 15,
+  paddingXLarge: 20,
+  paddingXXLarge: 25,
+  paddingXXXLarge: 30,
+
+  bottomNavSize: 45,
+  bottomNavBorderRadius: 45,
+
+  //icon avatar
+  avatarWidth: 45,
+  avatarHeight: 45,
+  avatarLWidth: 100,
+  avatarLHeight: 100,
+  avatarRadius: 25,
+  avatarBadgeTop: 0,
+  avatarBadgeRight: 3,
+
+  //iconbadge
+  badgeTop: -5,
+  badgeRight: -3,
+  badgeWidth: 17,
+  badgeHeight: 17,
+  badgeZIndex: 9999,
 };

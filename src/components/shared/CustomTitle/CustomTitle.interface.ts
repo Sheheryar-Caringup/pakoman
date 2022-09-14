@@ -4,4 +4,5 @@ export interface CustomTitleInterface {
   fontSize?: number;
   fontWeight?: string;
   extraStyles?: any;
+  numberOfLines?: number;
 }

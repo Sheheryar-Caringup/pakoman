@@ -18,6 +18,7 @@ const CustomTitle = ({
   titleColor,
   fontSize,
   fontWeight,
+  numberOfLines,
   extraStyles,
 }: CustomTitleInterface) => {
   const props = {
@@ -25,12 +26,19 @@ const CustomTitle = ({
     fontSize,
     titleColor,
   };
-  return <Text style={[styles(props)?.title, extraStyles]}>{title}</Text>;
+  return (
+    <Text
+      numberOfLines={numberOfLines}
+      style={[styles(props)?.title, extraStyles]}>
+      {title}
+    </Text>
+  );
 };
 
 CustomTitle.propTypes = {
   title: PropTypes.string.isRequired,
   titleColor: PropTypes.string,
+  numberOfLines: PropTypes.number,
   fontWeight: PropTypes.oneOf(fontWeightArray),
   fontSize: PropTypes.oneOf(fontSizeArray),
 };
@@ -40,6 +48,7 @@ CustomTitle.defaultProps = {
   titleColor: colorConstants?.gray,
   fontWeight: fontConstants?.fontWeightBold,
   fontSize: fontConstants?.middle,
+  numberOfLines: 30,
 };
 
 export default CustomTitle;

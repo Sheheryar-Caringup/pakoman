@@ -7,7 +7,7 @@ import {colorConstants} from '../../../utils/constants/colorConstants';
 import {CustomModalInterface} from './CustomModal.interface';
 import {styles} from './styles';
 
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 const CustomModal = ({
   title,
@@ -26,12 +26,12 @@ const CustomModal = ({
         <View style={styles({bottom}).modalView}>
           <TouchableOpacity
             style={styles({bottom}).closeButton}
-            activeOpacity={dimensionConstants.activeOpacity}
+            activeOpacity={dimensionConstants?.activeOpacity}
             onPress={onRequestClose}>
-            <MaterialCommunityIcons
-              name="close"
-              size={dimensionConstants.iconSmall}
-              color={colorConstants.drakGray}
+            <Icon
+              name="close-outline"
+              size={dimensionConstants?.iconSmall}
+              color={colorConstants?.drakGray}
             />
           </TouchableOpacity>
           <Text style={styles({bottom}).title}>{title}</Text>

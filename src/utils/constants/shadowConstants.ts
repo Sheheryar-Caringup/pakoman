@@ -2,7 +2,7 @@ import {colorConstants} from './colorConstants';
 import {dimensionConstants} from './dimensionConstants';
 
 export const shadowConstants = {
-  shadowColor: colorConstants?.black,
+  shadowColor: colorConstants?.primary,
   shadowOffset: {
     width: dimensionConstants?.shadowOffsetWidth,
     height: dimensionConstants?.shadowOffsetHeight,

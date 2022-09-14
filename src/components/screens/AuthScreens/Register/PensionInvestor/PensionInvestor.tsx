@@ -88,9 +88,9 @@ const PensionInvestor = () => {
   return (
     <>
       <Loader isLoading={isLoading} />
-      <KeyboardAwareScrollView style={styles.container}>
-        <View style={styles.logoContainer}>
-          <Image source={LogoIcon} style={styles.logo} />
+      <KeyboardAwareScrollView style={styles?.container}>
+        <View style={styles?.logoContainer}>
+          <Image source={LogoIcon} style={styles?.logo} />
           <CustomTitle
             title={languageTxt?.onlineServicesRequestCap}
             fontWeight={fontConstants?.fontWeight500}
@@ -132,12 +132,12 @@ const PensionInvestor = () => {
         </View>
 
         {formError && (
-          <View style={styles.formValidation}>
+          <View style={styles?.formValidation}>
             <ValidationMessage children={formError} />
           </View>
         )}
 
-        <View style={styles.loginContainer}>
+        <View style={styles?.loginContainer}>
           {/* txtName */}
           <Controller
             control={control}

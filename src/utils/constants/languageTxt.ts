@@ -100,6 +100,16 @@ export const languageTxt: any = {
     'Not yet PakomanInvestor? Open a New Sahulat Sarmayakari Account',
   copyrights: '© All Copyrights Reserved - Powered By Sidat Hyder',
 
+  registerAsA: 'Register as a',
+  corporateInvestorTitle: 'Corporate Investor',
+  corporateInvestorDetail:
+    'Manage the investment of your Corporate Funds. From cash management to long term investments, we have options that are best suited to your institutional needs.',
+  individualInvestorTitle: 'Individual Investor',
+  individualInvestorDetail:
+    'Manage your own Savings and Investments. The broad array of investment options offered by AGIML cover multiple risk/return profiles to enable you to make an investment appropriate for your needs.',
+  pensionInvestorTitle: 'Pension Investor',
+  pensionInvestorDetail:
+    'Manage your employee retirement funds and endowment plans with confidence through our professional advisory services and wide product range.',
   //Stacks and Screen
   reactStackKeys: {
     auth: {
@@ -113,5 +123,7 @@ export const languageTxt: any = {
         sahulatSarmayakari: 'Sahulat Sarmayakari',
       },
     },
+    home: 'Home',
+    profile: 'Personal Information',
   },
 };

@@ -10,7 +10,7 @@ import {languageTxt} from '../../../utils/constants/languageTxt';
 
 const CustomSnack = ({isOpen, setOpen}: CustomSnackInterface) => {
   return (
-    <View style={styles.container}>
+    <View style={styles?.container}>
       <Snackbar
         duration={1000}
         visible={isOpen == '' ? false : true}

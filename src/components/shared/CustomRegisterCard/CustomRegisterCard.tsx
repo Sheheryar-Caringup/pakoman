@@ -21,7 +21,7 @@ const CustomRegisterCard = ({
   return (
     <CustomCard
       body={
-        <View style={styles.body}>
+        <View style={styles?.body}>
           <CustomTitle
             title={title}
             titleColor={colorConstants?.drakGray}
@@ -39,7 +39,7 @@ const CustomRegisterCard = ({
           <CustomButton
             buttonText={languageTxt?.register}
             width={100}
-            extraStyles={styles.button}
+            extraStyles={styles?.button}
             handleOnPress={handleOnPress}
           />
         </View>

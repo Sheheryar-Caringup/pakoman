@@ -1,12 +1,14 @@
 export const fontConstants = {
   // Font Size
+  xxsmall: 8,
   xsmall: 10,
   small: 12,
   middle: 14,
   large: 18,
 
-  header: 22,
-  description: 14,
+  title: 18,
+  header: 24,
+  description: 13,
 
   // Font Weight
   fontWeightBold: 'bold',

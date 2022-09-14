@@ -1,52 +1,39 @@
 import {StyleSheet} from 'react-native';
-import { colorConstants } from '../../../utils/colorConstants';
-export const styles = StyleSheet.create({
-  container:{
-    flex: 1,
-    backgroundColor: colorConstants.white,
-  },
-  bodyContainer: {
-    flex:2,
-    backgroundColor: colorConstants.white,
-    alignItems: 'center',
-    justifyContent: 'center',
-    
-  },
-  buttonContainer:{
-    flexDirection: 'row',
-    paddingHorizontal: 10,
-    paddingVertical: 15,
-    justifyContent: 'flex-end'
-  },
-  buttonCircle: {
-    width: 70,
-    height: 30,
-    borderRadius: 15,
-    backgroundColor: colorConstants.white,
-    borderWidth: 2,
-    borderColor: colorConstants.primary,
-    justifyContent: 'center',
-    alignItems: 'center',
-    flexDirection: 'row'
-    
-  },
-  descriptionContainer:{
-    paddingHorizontal: 30,
-  },
-  sliderContainer:{
-    flex:0.5, 
-    backgroundColor: colorConstants.white,
-    flexDirection: 'column',
-  },
-  sliderPagination: {
-    flexDirection: 'row',
-    padding: 5,
-    alignSelf: 'center',
-    backgroundColor: colorConstants.white,
-    
-  },
-  sliderImage:{
-   paddingBottom: 10,
-  }
+import {colorConstants} from '../../../utils/constants/colorConstants';
+import {dimensionConstants} from '../../../utils/constants/dimensionConstants';
+import {fontConstants} from '../../../utils/constants/fontConstants';
 
+export const styles = StyleSheet.create({
+  buttonCircle: {
+    width: 40,
+    height: 40,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: colorConstants?.xLightBlackOpacity,
+    borderRadius: dimensionConstants?.borderRadiusLarge,
+  },
+  slide: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: colorConstants?.primary,
+  },
+  image: {
+    width: '100%',
+    height: 360,
+    resizeMode: 'stretch',
+    marginVertical: dimensionConstants?.marginXXXLarge,
+  },
+  text: {
+    textAlign: 'justify',
+    color: colorConstants?.white,
+    fontSize: fontConstants?.middle,
+    paddingHorizontal: dimensionConstants?.paddingLarge,
+  },
+  title: {
+    fontWeight: '500',
+    textAlign: 'center',
+    color: colorConstants?.white,
+    fontSize: fontConstants?.header,
+  },
 });
