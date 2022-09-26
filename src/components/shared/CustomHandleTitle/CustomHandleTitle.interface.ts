@@ -5,4 +5,5 @@ export interface CustomHandleTitleInterface {
   fontSize?: number;
   fontWeight?: string;
   extraStyles?: any;
+  textExtraStyles?: any;
 }

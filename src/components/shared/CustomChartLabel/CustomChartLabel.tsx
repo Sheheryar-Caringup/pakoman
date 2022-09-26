@@ -6,12 +6,13 @@ import {styles} from './styles';
 import {CustomChartLabelInterface} from './CustomChartLabel.interface';
 import {colorConstants} from '../../../utils/constants/colorConstants';
 import CustomTitle from '../CustomTitle';
+import {fontConstants} from '../../../utils/constants/fontConstants';
 
 const CustomChartLabel = ({label, color}: CustomChartLabelInterface) => {
   return (
     <View style={styles(color)?.iconTxtContainer}>
       <View style={styles(color)?.icon}></View>
-      <CustomTitle title={label} />
+      <CustomTitle title={label} fontSize={fontConstants.xsmall} />
     </View>
   );
 };

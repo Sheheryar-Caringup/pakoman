@@ -21,6 +21,7 @@ const CustomHandleTitle = ({
   fontSize,
   fontWeight,
   extraStyles,
+  textExtraStyles,
 }: CustomHandleTitleInterface) => {
   const props = {};
   return (
@@ -33,6 +34,7 @@ const CustomHandleTitle = ({
         fontWeight={fontWeight}
         fontSize={fontSize}
         titleColor={titleColor}
+        extraStyles={textExtraStyles}
       />
     </TouchableOpacity>
   );
@@ -45,6 +47,7 @@ CustomHandleTitle.propTypes = {
   fontWeight: PropTypes.oneOf(fontWeightArray),
   fontSize: PropTypes.oneOf(fontSizeArray),
   extraStyles: PropTypes.any,
+  textCenter: PropTypes.bool,
 };
 
 CustomHandleTitle.defaultProps = {
@@ -54,6 +57,7 @@ CustomHandleTitle.defaultProps = {
   fontWeight: fontConstants?.fontWeightBold,
   fontSize: fontConstants?.middle,
   extraStyles: null,
+  textCenter: false,
 };
 
 export default CustomHandleTitle;

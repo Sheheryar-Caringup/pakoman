@@ -7,13 +7,18 @@ export const styles = (color: string) => {
   return StyleSheet.create({
     container: {
       flexDirection: 'row',
-      justifyContent: 'space-between',
+      alignItems: 'center',
       borderBottomWidth: 1,
       borderColor: colorConstants?.lightGray,
       paddingVertical: dimensionConstants?.paddingSmall,
     },
+    textContainer: {
+      flex: 1,
+      paddingLeft: dimensionConstants?.padding,
+    },
     rightSide: {
       alignItems: 'flex-end',
+      paddingHorizontal: dimensionConstants?.padding,
     },
     icon: {
       width: dimensionConstants?.iconSmall,

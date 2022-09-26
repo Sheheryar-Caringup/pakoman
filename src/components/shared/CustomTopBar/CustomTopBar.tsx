@@ -11,6 +11,7 @@ import {styles} from './styles';
 import CustomImage from '../CustomImage';
 import {colorConstants} from '../../../utils/constants/colorConstants';
 import {languageTxt} from '../../../utils/constants/languageTxt';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const CustomTopBar = ({
   title,
@@ -44,10 +45,15 @@ const CustomTopBar = ({
           onPress={() => {
             navigation.navigate(languageTxt?.reactStackKeys?.profile);
           }}>
-          <CustomImage
+          <MaterialCommunityIcons
+            name="account-circle"
+            color={colorConstants?.white}
+            size={dimensionConstants?.avatarWidth}
+          />
+          {/* <CustomImage
             image={userIcon}
             imageSize={dimensionConstants?.avatarWidth}
-          />
+          /> */}
         </TouchableOpacity>
       </View>
       <View style={styles(userStatus, bgColor).txtContainer}>

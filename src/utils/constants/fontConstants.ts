@@ -4,10 +4,11 @@ export const fontConstants = {
   xsmall: 10,
   small: 12,
   middle: 14,
+  xmiddle: 16,
   large: 18,
 
   title: 18,
-  header: 24,
+  header: 21,
   description: 13,
 
   // Font Weight
@@ -39,8 +40,12 @@ export const fontWeightArray = [
 ];
 
 export const fontSizeArray = [
+  fontConstants?.xxsmall,
   fontConstants?.xsmall,
   fontConstants?.small,
   fontConstants?.middle,
   fontConstants?.large,
+  fontConstants?.title,
+  fontConstants?.header,
+  fontConstants?.description,
 ];

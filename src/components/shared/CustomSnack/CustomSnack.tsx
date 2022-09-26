@@ -12,7 +12,7 @@ const CustomSnack = ({isOpen, setOpen}: CustomSnackInterface) => {
   return (
     <View style={styles?.container}>
       <Snackbar
-        duration={1000}
+        duration={3000}
         visible={isOpen == '' ? false : true}
         onDismiss={() => setOpen()}
         action={{

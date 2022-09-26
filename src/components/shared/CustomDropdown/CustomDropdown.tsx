@@ -39,13 +39,13 @@ const CustomDropdown = ({
           errorMsg={errorMsg}
           placeHolder={placeHolder}
           value={value}
-          rightIcon={() => (
+          rightIcon={
             <Icon
               name="chevron-down-outline"
-              size={dimensionConstants?.iconSmall}
+              size={dimensionConstants?.iconXXSmall}
               color={colorConstants?.gray}
             />
-          )}
+          }
           rightIconClick={() => setShowDropDown(true)}
         />
       </TouchableOpacity>

@@ -1,5 +1,6 @@
 import {StyleSheet} from 'react-native';
 import {colorConstants} from '../../../utils/constants/colorConstants';
+import {dimensionConstants} from '../../../utils/constants/dimensionConstants';
 
 export const styles = (isLoading: any) => {
   const isLoadingStyles: any = isLoading
@@ -18,8 +19,14 @@ export const styles = (isLoading: any) => {
       zIndex: 999,
       alignContent: 'center',
       justifyContent: 'center',
-      backgroundColor: colorConstants?.lightBlackOpacity,
+      backgroundColor: colorConstants?.white,
       ...isLoadingStyles,
+    },
+    logo: {
+      width: 110,
+      height: 120,
+      alignSelf: 'center',
+      marginBottom: dimensionConstants?.marginXLarge,
     },
   });
 };

@@ -1,4 +1,89 @@
 export const languageTxt: any = {
+  //Stacks and Screen
+  reactAsyncStorageKeys: {
+    appInfo: 'appInfo',
+    userInfo: 'userInfo',
+  },
+  reactStackKeys: {
+    splash: 'Splash',
+    auth: {
+      name: 'Auth Screen',
+      login: 'Login',
+      register: {
+        name: 'Register',
+        investorTypes: 'Investor Types',
+        corporateInvestor: 'Corporate Investor',
+        individualInvestor: 'Individual Investor',
+        pensionInvestor: 'Pension Investor',
+        sahulatSarmayakari: 'Sahulat Sarmayakari',
+      },
+    },
+    guest: {
+      name: 'Guest',
+      aboutus: {
+        name: 'About us',
+        menus: 'About us Menus',
+        whoWeAre: 'Who We Are',
+        codeofConduct: 'Code Of Conduct',
+        whistleBlower: 'Whistle Blower',
+      },
+      whatWeDo: {
+        name: 'What We Do',
+        menus: 'What We Do Menus',
+        conventionalSolutions: {
+          name: 'Conventional Solutions',
+          acf: 'ACF (Money Market)',
+          poif: 'POIF (POGSF)',
+          asye: 'ASYE (Income)',
+          poaaaf: 'POAAAF (Asset Allocation)',
+          ahys: 'AHYS (Aggressive Income)',
+        },
+        shariahCompliantSolutions: {
+          name: 'Shariah-Compliant Solutions',
+          poaiif: 'POAIIF (Islamic Income)',
+          poiaaf: 'POIAAF (Islamic Allocation)',
+          poddf: 'PODDF (Islamic Money Market)',
+        },
+        portfolioManagement: 'Portfolio Management',
+      },
+      weServeYou: {
+        name: 'We Serve You',
+        menus: 'We Serve You Menus',
+      },
+      downloads: {
+        name: 'Downloads',
+        menus: 'Downloads Menus',
+        fundManagersReport: 'Fund Managers Report',
+        navHistory: 'Nav History',
+        applicationForms: 'Application Forms',
+        constitutiveDocuments: 'Constitutive Documents',
+        financialStatements: 'Financial Statements',
+        howToInvest: 'How To Invest',
+        proxyVotingPolicy: 'Proxy Voting Policy',
+        provisioningPolicyFinal: 'Provisioning Policy Final',
+        fatwah: 'Fatwah',
+        complianceCertificate: 'Compliance Certificate',
+      },
+    },
+    user: {
+      name: 'User',
+      home: 'Home',
+      alerts: 'Alerts',
+      eTransactions: 'E-Transactions',
+      addAccount: 'Add Account',
+      accountStatement: 'Account Statement',
+      statement: 'Statement',
+    },
+    profile: 'Personal Information',
+  },
+  reactQueryKeys: {
+    dashboard: {
+      mappedAccount: 'mappedAccount',
+      chartInfo: 'chartInfo',
+      userInfo: 'userInfo',
+    },
+  },
+  noDataAvailable: 'No data available',
   // ErrorMessages
   txtUserNameError: 'Username is required',
   txtPasswordError: 'Password is required',
@@ -64,6 +149,10 @@ export const languageTxt: any = {
   txtBankAccountNum: 'Bank Acc. Number',
   txtIBAN_Number: 'IBAN Number',
   txtKnow: 'How Did You Know About Pak Oman?',
+
+  txtNamePerCNIC: 'Name (as per CNIC)',
+  txtNamePerCNICError: 'Name (as per CNIC)  is required',
+
   // Select
   ddlGender: 'Select Gender',
   ddlCity: 'Select City',
@@ -74,19 +163,21 @@ export const languageTxt: any = {
   ddlAdvisor: 'Select Advisor',
   FileUpload1: '',
 
+  next: 'Next',
   login: 'Login',
+  registerNow: 'Register Now',
   openAccount: 'Open an Account',
   forgotUsername: 'Forgot Username?',
   submitRequest: 'Submit Request',
   clear: 'Clear',
   register: 'Register',
 
-  selectYourInvestmentTypeCap: 'SELECT YOUR INVESTMENT TYPE',
-  servicesRequestFormForCorporateInvestorsCap:
-    'SERVICES REQUEST FORM FOR CORPORATE INVESTORS',
-  onlineServicesRequestCap: 'ONLINE SERVICES REQUEST',
+  selectYourInvestmentType: 'Select Your Investment Type',
+  servicesRequestFormForCorporateInvestors:
+    'Services Request Form For Corporate Investors',
   sahulatSarmayakariAccountCap: 'SAHULAT SARMAYAKARI ACCOUNT',
 
+  welcomeMsg: 'Welcome to Pak Oman Digital Sigin in your account',
   onlineServicesRequest: 'Online Services Request',
   investorWelcome:
     'Welcome to Online Service Registration for PakOman Investments.',
@@ -97,7 +188,7 @@ export const languageTxt: any = {
   sahulatSarmayakariAccountInfo:
     'Please enter your infomation and proceed to the next step so we can build your accounts.',
   sahulatSarmayakariAccountOpen:
-    'Not yet PakomanInvestor? Open a New Sahulat Sarmayakari Account',
+    'Not yet PakomanInvestor? \nOpen a New Sahulat Sarmayakari Account',
   copyrights: '© All Copyrights Reserved - Powered By Sidat Hyder',
 
   registerAsA: 'Register as a',
@@ -110,20 +201,4 @@ export const languageTxt: any = {
   pensionInvestorTitle: 'Pension Investor',
   pensionInvestorDetail:
     'Manage your employee retirement funds and endowment plans with confidence through our professional advisory services and wide product range.',
-  //Stacks and Screen
-  reactStackKeys: {
-    auth: {
-      login: 'Login',
-      register: {
-        name: 'Register',
-        investorTypes: 'Investor Types',
-        corporateInvestor: 'Corporate Investor',
-        individualInvestor: 'Individual Investor',
-        pensionInvestor: 'Pension Investor',
-        sahulatSarmayakari: 'Sahulat Sarmayakari',
-      },
-    },
-    home: 'Home',
-    profile: 'Personal Information',
-  },
 };

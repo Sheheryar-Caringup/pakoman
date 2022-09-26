@@ -18,11 +18,9 @@ export interface CustomInputInterface {
 
   rightIcon?: any;
   rightIconClick?: any;
-  rightIconColor?: string;
 
   leftIcon?: any;
   leftIconClick?: any;
-  leftIconColor?: any;
 
   secureTextEntry?: boolean;
   onEndEditing?: any;

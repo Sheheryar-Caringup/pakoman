@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {View} from 'react-native';
 import PropTypes from 'prop-types';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -11,15 +11,23 @@ import {dimensionConstants} from '../../../utils/constants/dimensionConstants';
 import {colorConstants} from '../../../utils/constants/colorConstants';
 import {HeaderLayoutInterface} from './HeaderLayout.interface';
 import {styles} from './styles';
+import {useAuthentication} from '../../../utils/globalHooks';
 
 const HeaderLayout = ({body, bgColor}: HeaderLayoutInterface) => {
   const [openMenu, setOpenMenu] = useState(false);
-  const navigation = useNavigation();
+  const [username, setUsername] = useState('');
+
+  const {data: authData}: any = useAuthentication();
+
+  useEffect(() => {
+    if (authData?.userProfile)
+      setUsername(authData?.userProfile?.['Account Title']);
+  }, [authData]);
 
   return (
     <View style={styles?.container}>
       <CustomTopBar
-        title={`Hi Sheheryar`}
+        title={`Hi ${username}`}
         description={'Welcome Back!'}
         userIcon={
           'https://i.ibb.co/j4jrJGx/csm-man-holger-von-der-heide-interview-header-02ae36db18.webp'

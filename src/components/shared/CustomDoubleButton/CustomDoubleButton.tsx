@@ -60,7 +60,7 @@ CustomDoubleButton.defaultProps = {
   isDisabledPrimary: false,
   isDisabledSecondary: false,
   primaryTextColor: colorConstants?.white,
-  secondaryTextColor: colorConstants?.drakGray,
+  secondaryTextColor: colorConstants?.primary,
 };
 
 export default CustomDoubleButton;

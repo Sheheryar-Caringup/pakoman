@@ -1,93 +1,106 @@
 import React from 'react';
 import {View} from 'react-native';
-import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
-import Icon from 'react-native-vector-icons/Ionicons';
+import {
+  BottomTabBar,
+  createBottomTabNavigator,
+} from '@react-navigation/bottom-tabs';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
-import {dimensionConstants} from '../../utils/constants/dimensionConstants';
-import {colorConstants} from '../../utils/constants/colorConstants';
-import {shadowConstants} from '../../utils/constants/shadowConstants';
 import {styles} from './styles';
+import {IS_IPHONE_X} from '../../utils/utils';
+import {languageTxt} from '../../utils/constants/languageTxt';
+import {colorConstants} from '../../utils/constants/colorConstants';
+import {dimensionConstants} from '../../utils/constants/dimensionConstants';
 
-import Home from '../../components/screens/Home';
-// import MoreStackNavigator from '../MoreNavigator/MoreNavigator';
-// import ClearYourDoubtsNavigator from '../ClearYourDoubtsNavigator';
-// import CourseNavigator from '../CourseNavigator';
-// import LiveClassNavigator from '../LiveClassNavigator';
-// import GroupStackNavigator from '../GroupNavigator/GroupNavigator';
+import AuthNavigator from './AuthNavigator';
+import AboutusNavigator from './AboutusNavigator';
+import WhatWeDoNavigator from './WhatWeDoNavigator';
+import WeServeYouNavigator from './WeServeYouNavigator';
+import DownloadsNavigator from './DownloadsNavigator';
 
-const Tab = createMaterialBottomTabNavigator();
+import TabBarAdvancedButton from '../../components/shared/TabBarAdvancedButton';
+import Menus from '../../components/screens/GuestScreens/Aboutus/Menu';
 
-const tabIcons: any = {
-  HOME: 'home-outline',
-  HOMEACTIVE: 'home',
-  ALARM: 'alarm-outline',
-  ALARMACTIVE: 'alarm',
-  GROUPS: 'cash-outline',
-  GROUPSACTIVE: 'cash',
-  DOUBTS: 'person-add-outline',
-  DOUBTSACTIVE: 'person-add',
-  MORE: 'clipboard-outline',
-  MOREACTIVE: 'clipboard',
-};
+const BottomBar = createBottomTabNavigator();
 
-const getTabIcon = (tabKey: string) => {
-  return {
-    tabBarIcon: ({color}: any) => (
-      <View style={styles(color).icon}>
-        <Icon
-          name={
-            color == colorConstants?.primary
-              ? tabIcons[tabKey + 'ACTIVE']
-              : tabIcons[tabKey]
-          }
-          size={dimensionConstants?.iconSmall}
-          color={color}
-        />
-      </View>
-    ),
-  };
-};
-
-const HomeNavigator = () => {
+const GuestNavigator = () => {
   return (
-    <Tab.Navigator
-      shifting={false}
-      initialRouteName={'Home'}
-      activeColor={colorConstants?.primary}
-      inactiveColor={colorConstants?.gray}
-      barStyle={{
-        borderTopWidth: 0.2,
-        backgroundColor: colorConstants?.white,
-        borderColor: colorConstants?.xLightBlackOpacity,
-        paddingBottom: dimensionConstants?.paddingXSmall,
-        ...shadowConstants,
-      }}
+    <BottomBar.Navigator
+      tabBar={props => (
+        <View style={styles.navigatorContainer}>
+          <BottomTabBar {...props} />
+          {IS_IPHONE_X && <View style={styles.xFillLine} />}
+        </View>
+      )}
+      initialRouteName={languageTxt?.reactStackKeys?.auth?.name}
       screenOptions={{
-        tabBarLabel: '',
+        tabBarActiveTintColor: colorConstants?.gold,
+        tabBarInactiveTintColor: colorConstants?.gray,
+        headerShown: false,
       }}>
-      <Tab.Screen name={'Home'} component={Home} options={getTabIcon('HOME')} />
-      <Tab.Screen
-        name={'AlarmStack'}
-        component={Home}
-        options={getTabIcon('ALARM')}
+      <BottomBar.Screen
+        name={languageTxt?.reactStackKeys?.guest?.aboutus?.name}
+        component={Menus}
+        options={{
+          tabBarIcon: ({color}) => (
+            <MaterialCommunityIcons
+              name="information"
+              color={color}
+              size={dimensionConstants?.iconSmall}
+            />
+          ),
+        }}
       />
-      <Tab.Screen
-        name={'ClearYourDoubtsStack'}
-        component={Home}
-        options={getTabIcon('DOUBTS')}
+      <BottomBar.Screen
+        name={languageTxt?.reactStackKeys?.guest?.whatWeDo?.name}
+        component={WhatWeDoNavigator}
+        options={{
+          tabBarIcon: ({color}) => (
+            <MaterialCommunityIcons
+              name="cogs"
+              color={color}
+              size={dimensionConstants?.iconSmall}
+            />
+          ),
+        }}
       />
-      <Tab.Screen
-        name={'GroupsStack'}
-        component={Home}
-        options={getTabIcon('GROUPS')}
+      <BottomBar.Screen
+        name={languageTxt?.reactStackKeys?.auth?.name}
+        component={AuthNavigator}
+        options={{
+          tabBarButton: props => (
+            <TabBarAdvancedButton bgColor={colorConstants?.iconBg} {...props} />
+          ),
+        }}
       />
-      <Tab.Screen
-        name={'MoreStack'}
-        component={Home}
-        options={getTabIcon('MORE')}
+      <BottomBar.Screen
+        name={languageTxt?.reactStackKeys?.guest?.weServeYou?.name}
+        component={WeServeYouNavigator}
+        options={{
+          tabBarIcon: ({color}) => (
+            <MaterialCommunityIcons
+              name="hand-heart"
+              color={color}
+              size={dimensionConstants?.iconSmall}
+            />
+          ),
+        }}
       />
-    </Tab.Navigator>
+      <BottomBar.Screen
+        name={languageTxt?.reactStackKeys?.guest?.downloads?.name}
+        component={DownloadsNavigator}
+        options={{
+          tabBarIcon: ({color}) => (
+            <MaterialCommunityIcons
+              name="download"
+              color={color}
+              size={dimensionConstants?.iconSmall}
+            />
+          ),
+        }}
+      />
+    </BottomBar.Navigator>
   );
 };
 
-export default HomeNavigator;
+export default GuestNavigator;

@@ -14,7 +14,7 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     padding: dimensionConstants?.paddingMiddle,
     marginTop: dimensionConstants?.marginXSmall,
-    backgroundColor: colorConstants?.backgroundColor,
+    backgroundColor: colorConstants?.xlightGray,
     borderRadius: dimensionConstants?.borderRadiusSmall,
   },
   value: {

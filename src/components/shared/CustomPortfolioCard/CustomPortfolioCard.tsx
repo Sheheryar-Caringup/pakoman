@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {View} from 'react-native';
 import PropTypes from 'prop-types';
 import * as Progress from 'react-native-progress';
@@ -18,11 +18,18 @@ const CustomPortfolioCard = ({
   percentages,
   color,
 }: CustomCardInterface) => {
+  const [percentagesUpdate, setPercentagesUpdate]: any = useState(0);
+  useEffect(() => {
+    if (percentages) {
+      setPercentagesUpdate(percentages / 100);
+    }
+  }, [percentages]);
+
   return (
     <View style={styles(color).container}>
       <Progress.Circle
         size={40}
-        progress={0.4}
+        progress={percentagesUpdate}
         color={color}
         showsText={true}
         textStyle={{
@@ -31,8 +38,12 @@ const CustomPortfolioCard = ({
           color: colorConstants?.drakGray,
         }}
       />
-      <View>
-        <CustomTitle title={fundsName} titleColor={colorConstants?.secondary} />
+      <View style={styles(color).textContainer}>
+        <CustomTitle
+          title={fundsName}
+          titleColor={colorConstants?.secondary}
+          fontSize={fontConstants.small}
+        />
         <CustomTitle
           title={`Holding Percentages ${percentages}%`}
           titleColor={colorConstants?.secondaryLight}
@@ -43,6 +54,7 @@ const CustomPortfolioCard = ({
         <CustomTitle
           title={`PKR ${investment}`}
           titleColor={colorConstants?.secondary}
+          fontSize={fontConstants.small}
         />
         <CustomTitle
           title={`Units ${unit}`}
@@ -58,15 +70,15 @@ CustomPortfolioCard.propTypes = {
   fundsName: PropTypes.string.isRequired,
   unit: PropTypes.string.isRequired,
   investment: PropTypes.string.isRequired,
-  percentages: PropTypes.string.isRequired,
+  percentages: PropTypes.any.isRequired,
   color: PropTypes.string.isRequired,
 };
 
 CustomPortfolioCard.defaultProps = {
   fundsName: '',
-  unit: '',
+  unit: 0,
   investment: '',
-  percentages: '',
+  percentages: 0,
   color: colorConstants?.primary,
 };
 export default CustomPortfolioCard;

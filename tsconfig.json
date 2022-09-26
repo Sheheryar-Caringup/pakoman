@@ -26,5 +26,5 @@
     "src/components",
     "declarations.d.ts",
     "src/navigations"
-  ]
+, "src/utils/utils.ts"  ]
 }

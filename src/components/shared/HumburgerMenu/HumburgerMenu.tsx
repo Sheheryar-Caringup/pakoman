@@ -12,9 +12,13 @@ import {styles} from './styles';
 import {colorConstants} from '../../../utils/constants/colorConstants';
 import {fontConstants} from '../../../utils/constants/fontConstants';
 import {dimensionConstants} from '../../../utils/constants/dimensionConstants';
+import {languageTxt} from '../../../utils/constants/languageTxt';
+import {asyncLogoutService} from '../../../config/asyncStorage/asynDataStore';
+import {useQueryClient} from 'react-query';
 
 const HumburgerMenu = ({open, setOpen}: HumburgerMenuInterface) => {
   const navigation = useNavigation();
+  const queryClient = useQueryClient();
 
   return (
     <CustomModal
@@ -74,7 +78,10 @@ const HumburgerMenu = ({open, setOpen}: HumburgerMenuInterface) => {
               />
             }
             buttonText={'Logout'}
-            handleOnPress={() => {}}
+            handleOnPress={async () => {
+              await asyncLogoutService(languageTxt, queryClient);
+              navigation.navigate(languageTxt?.reactStackKeys?.guest?.name);
+            }}
           />
         </View>
       }

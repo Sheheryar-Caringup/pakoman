@@ -4,35 +4,35 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 import {languageTxt} from '../../utils/constants/languageTxt';
 
-import Login from '../../components/screens/AuthScreens/Login';
-import RegisterNavigator from '../RegisterNavigator';
-import HomeNavigator from '../HomeNavigator';
+import GuestNavigator from '../GuestNavigator';
+import UserNavigator from '../UserNavigator';
 import Profile from '../../components/screens/Profile';
+import SplashScreen from '../../components/screens/SplashScreen';
 
 const rootStack = () => {
   const RootStack = createNativeStackNavigator();
   return (
     <NavigationContainer>
       <RootStack.Navigator
-        initialRouteName={languageTxt?.reactStackKeys?.auth?.login}>
+        initialRouteName={languageTxt?.reactStackKeys?.splash}>
         <RootStack.Group screenOptions={{headerShown: false}}>
           <RootStack.Screen
-            name={languageTxt?.reactStackKeys?.auth?.login}
-            component={Login}
+            name={languageTxt?.reactStackKeys?.splash}
+            component={SplashScreen}
           />
           <RootStack.Screen
-            name={languageTxt?.reactStackKeys?.auth?.register?.name}
-            component={RegisterNavigator}
+            name={languageTxt?.reactStackKeys?.guest?.name}
+            component={GuestNavigator}
           />
           <RootStack.Screen
-            name={languageTxt?.reactStackKeys?.home}
-            component={HomeNavigator}
+            name={languageTxt?.reactStackKeys?.user?.name}
+            component={UserNavigator}
+          />
+          <RootStack.Screen
+            name={languageTxt?.reactStackKeys?.profile}
+            component={Profile}
           />
         </RootStack.Group>
-        <RootStack.Screen
-          name={languageTxt?.reactStackKeys?.profile}
-          component={Profile}
-        />
       </RootStack.Navigator>
     </NavigationContainer>
   );

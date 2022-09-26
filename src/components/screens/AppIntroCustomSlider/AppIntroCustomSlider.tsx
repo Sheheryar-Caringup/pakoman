@@ -6,6 +6,8 @@ import AppIntroSlider from 'react-native-app-intro-slider';
 import {styles} from './styles';
 import {slides} from './appIntroCustomSliderItems';
 import {colorConstants} from '../../../utils/constants/colorConstants';
+import {storeServiceBoolean} from '../../../config/asyncStorage/asynDataStore';
+import {languageTxt} from '../../../utils/constants/languageTxt';
 
 const AppIntroCustomSlider = ({setShowRealApp}: any) => {
   const renderItem = ({item}: any) => {
@@ -54,7 +56,10 @@ const AppIntroCustomSlider = ({setShowRealApp}: any) => {
       data={slides}
       renderDoneButton={renderDoneButton}
       renderNextButton={renderNextButton}
-      onDone={setShowRealApp}
+      onDone={() => {
+        setShowRealApp(true);
+        storeServiceBoolean(languageTxt?.reactAsyncStorageKeys?.appInfo, true);
+      }}
     />
   );
 };

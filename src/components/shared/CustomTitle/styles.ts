@@ -7,6 +7,7 @@ export const styles = (props: any) => {
       fontSize: fontSize,
       fontWeight: fontWeight,
       color: titleColor,
+      lineHeight: fontSize + 6,
     },
   });
 };

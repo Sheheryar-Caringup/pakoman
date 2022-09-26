@@ -4,6 +4,7 @@ import {shadowConstants} from '../../../utils/constants/shadowConstants';
 
 import {colorConstants} from '../../../utils/constants/colorConstants';
 import {dimensionConstants} from '../../../utils/constants/dimensionConstants';
+import {fontConstants} from '../../../utils/constants/fontConstants';
 
 export const styles = ({error, multiline}: any) => {
   const errorStyles = error
@@ -11,7 +12,7 @@ export const styles = ({error, multiline}: any) => {
         borderColor: colorConstants?.red,
       }
     : {
-        borderColor: colorConstants?.white,
+        borderColor: colorConstants?.lightGray,
       };
   const multilineStyle = multiline && {
     height: dimensionConstants?.multiLineHeight,
@@ -22,16 +23,20 @@ export const styles = ({error, multiline}: any) => {
       ...shadowConstants,
     },
     inputContainer: {
+      flexDirection: 'row',
+      backgroundColor: colorConstants?.white,
+      alignItems: 'center',
+      paddingHorizontal: dimensionConstants?.paddingLarge,
       borderWidth: dimensionConstants?.errorBorderWidth,
-      borderRadius: dimensionConstants?.borderRadius,
-      overflow: 'hidden',
+      borderRadius: dimensionConstants?.borderRadiusXXLarge,
       ...shadowConstants,
       ...errorStyles,
     },
     input: {
+      flex: 1,
+      paddingHorizontal: dimensionConstants?.padding,
+      paddingVertical: dimensionConstants?.paddingSmall,
       ...multilineStyle,
-      backgroundColor: colorConstants?.white,
-      marginVertical: -2,
     },
   });
 };

@@ -14,7 +14,8 @@ export const dimensionConstants = {
   iconSmall: 26,
   iconMiddle: 30,
   iconLarge: 35,
-  iconxLarge: 60,
+  iconXLarge: 60,
+  iconXXLarge: 72,
 
   // card
   cardRadius: 15,
@@ -40,7 +41,7 @@ export const dimensionConstants = {
   multiLineHeight: 180,
 
   // Button
-  buttonBorderRadius: 10,
+  buttonBorderRadius: 50,
   buttonPadding: 14,
   iconTxtPadding: 5,
   buttonDisabledOpacity: 0.8,
@@ -62,7 +63,7 @@ export const dimensionConstants = {
   marginXXLarge: 25,
   marginXXXLarge: 30,
 
-  marginImage: 120,
+  marginImage: 50,
 
   // padding
   paddingXXXSmall: 1,
@@ -76,8 +77,8 @@ export const dimensionConstants = {
   paddingXXLarge: 25,
   paddingXXXLarge: 30,
 
-  bottomNavSize: 45,
-  bottomNavBorderRadius: 45,
+  bottomNavSize: 55,
+  bottomNavBorderRadius: 55,
 
   //icon avatar
   avatarWidth: 45,
@@ -94,4 +95,6 @@ export const dimensionConstants = {
   badgeWidth: 17,
   badgeHeight: 17,
   badgeZIndex: 9999,
+
+  backArrowPadding: 15,
 };

@@ -14,13 +14,13 @@ export const slides = [
     title: languageTxt?.corporateInvestorTitle,
     text: languageTxt?.corporateInvestorDetail,
     image: require('../../../assets/slider/2.png'),
-    bg: colorConstants?.gold,
+    bg: colorConstants?.primary,
   },
   {
     key: 3,
     title: languageTxt?.individualInvestorTitle,
     text: languageTxt?.individualInvestorDetail,
     image: require('../../../assets/slider/3.png'),
-    bg: colorConstants?.primaryLight,
+    bg: colorConstants?.primary,
   },
 ];

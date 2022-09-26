@@ -11,7 +11,6 @@ import {
   fontWeightArray,
 } from '../../../utils/constants/fontConstants';
 import {colorConstants} from '../../../utils/constants/colorConstants';
-import {dimensionConstants} from '../../../utils/constants/dimensionConstants';
 
 const CustomTitle = ({
   title,

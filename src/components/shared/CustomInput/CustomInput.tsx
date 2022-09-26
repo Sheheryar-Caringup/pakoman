@@ -1,14 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import {View} from 'react-native';
-import {TextInput} from 'react-native-paper';
+import {TextInput, TouchableOpacity, View} from 'react-native';
 
 import {styles} from './styles';
 import {CustomInputInterface} from './CustomInput.interface';
 import ValidationMessage from '../ValidationMessage';
-
-import {colorConstants} from '../../../utils/constants/colorConstants';
 
 const autoCapitalizeArray = ['characters', 'none', 'sentences', 'words'];
 const keyboardTypeArray = [
@@ -47,11 +44,9 @@ const CustomInput = ({
 
   rightIcon,
   rightIconClick,
-  rightIconColor,
 
   leftIcon,
   leftIconClick,
-  leftIconColor,
 
   secureTextEntry,
   onEndEditing,
@@ -63,10 +58,19 @@ const CustomInput = ({
     <>
       <View style={styles({error, multiline}).shadowContainer}>
         <View style={styles({error, multiline}).inputContainer}>
+          {leftIcon && (
+            <TouchableOpacity
+              disabled={leftIconClick ? false : true}
+              activeOpacity={0.8}
+              onPress={leftIconClick}>
+              {leftIcon}
+            </TouchableOpacity>
+          )}
           <TextInput
-            label={placeHolder}
+            placeholder={placeHolder}
             value={value}
-            disabled={disabled}
+            editable={!disabled}
+            selectTextOnFocus={!disabled}
             onChangeText={text => handleChange(text)}
             onBlur={() => onBlur()}
             blurOnSubmit={blurOnSubmit}
@@ -74,43 +78,23 @@ const CustomInput = ({
             numberOfLines={numberOfLines}
             keyboardType={keyboardType}
             autoCapitalize={autoCapitalize}
-            underlineColor="transparent"
             returnKeyType={'done'}
             style={styles({error, multiline}).input}
-            right={
-              rightIcon && (
-                <TextInput.Icon
-                  name={rightIcon}
-                  onPress={rightIconClick}
-                  color={rightIconColor}
-                />
-              )
-            }
-            left={
-              leftIcon && (
-                <TextInput.Icon
-                  name={leftIcon}
-                  onPress={leftIconClick}
-                  color={leftIconColor}
-                />
-              )
-            }
             secureTextEntry={secureTextEntry}
-            theme={{
-              colors: {
-                primary: colorConstants?.gray,
-                text: colorConstants?.black,
-                placeholder: colorConstants?.gray,
-                disabled: colorConstants?.gray,
-                accent: colorConstants?.gray,
-              },
-            }}
             maxLength={200}
             onEndEditing={onEndEditing}
             autoFocus={autoFocus}
             ref={ref}
             onFocus={onFocus}
           />
+          {rightIcon && (
+            <TouchableOpacity
+              disabled={rightIconClick ? false : true}
+              activeOpacity={0.8}
+              onPress={rightIconClick}>
+              {rightIcon}
+            </TouchableOpacity>
+          )}
         </View>
         {error && !!errorMsg && <ValidationMessage children={errorMsg} />}
       </View>
@@ -138,11 +122,9 @@ CustomInput.propTypes = {
 
   rightIcon: PropTypes.any,
   rightIconClick: PropTypes.any,
-  rightIconColor: PropTypes.string,
 
   leftIcon: PropTypes.any,
   leftIconClick: PropTypes.any,
-  leftIconColor: PropTypes.string,
 
   secureTextEntry: PropTypes.bool,
   onEndEditing: PropTypes.func,

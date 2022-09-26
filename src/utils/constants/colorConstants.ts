@@ -13,15 +13,17 @@ export const colorConstants = {
 
   drakGray: '#555555',
   gray: 'gray',
-  lightGray: '#bbbaba',
+  lightGray: '#c4c3c3',
+  xlightGray: '#f5f6fa',
 
-  primary: '#027f95',
-  secondary: '#706e6f',
+  primary: '#d59b28',
+  secondary: '#656465',
   gold: '#ca970b',
 
-  primaryLight: '#027f95ba',
-  secondaryLight: '#706e6fba',
+  primaryLight: '#d59b28ba',
+  secondaryLight: '#656465ba',
   goldLight: '#f0e9d7',
 
-  backgroundColor: '#f1f3f8',
+  backgroundColor: '#fff',
+  iconBg: '#F6F7EB',
 };
