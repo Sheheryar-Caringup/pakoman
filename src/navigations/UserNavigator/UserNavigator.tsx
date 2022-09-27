@@ -1,5 +1,5 @@
-import React from 'react';
-import {View} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {Alert, BackHandler, View} from 'react-native';
 import {
   BottomTabBar,
   createBottomTabNavigator,
@@ -14,91 +14,132 @@ import {dimensionConstants} from '../../utils/constants/dimensionConstants';
 
 import Home from '../../components/screens/UserScreen/Home';
 import Alerts from '../../components/screens/UserScreen/Alerts';
-import ETransactions from '../../components/screens/UserScreen/ETransactions';
+import ETransactionsNavigator from './ETransactionsNavigator';
 import AddAccount from '../../components/screens/UserScreen/AddAccount';
 import AccountStatement from '../../components/screens/UserScreen/AccountStatement';
 
 import TabBarAdvancedButton from '../../components/shared/TabBarAdvancedButton';
+import CustomSnack from '../../components/shared/CustomSnack';
+import {asyncLogoutService} from '../../config/asyncStorage/asynDataStore';
+import {useQueryClient} from 'react-query';
+import {useNavigation} from '@react-navigation/native';
+import HomeNavigator from './HomeNavigator';
 
 const BottomBar = createBottomTabNavigator();
 
 const UserNavigator = () => {
+  const navigation = useNavigation();
+  const queryClient = useQueryClient();
+  const [errorSnack, setErrorSnack] = useState('');
+  useEffect(() => {
+    const backAction = () => {
+      Alert.alert('Hold on!', 'Are you sure you want to go back?', [
+        {
+          text: 'Cancel',
+          onPress: () => null,
+          style: 'cancel',
+        },
+        {
+          text: 'YES',
+          onPress: () => {
+            asyncLogoutService(languageTxt, queryClient);
+            navigation.navigate(languageTxt?.reactStackKeys?.guest?.name);
+            BackHandler.exitApp();
+          },
+        },
+      ]);
+      return true;
+    };
+
+    const backHandler = BackHandler.addEventListener(
+      'hardwareBackPress',
+      backAction,
+    );
+
+    return () => backHandler.remove();
+  }, []);
   return (
-    <BottomBar.Navigator
-      tabBar={props => (
-        <View style={styles.navigatorContainer}>
-          <BottomTabBar {...props} />
-          {IS_IPHONE_X && <View style={styles.xFillLine} />}
-        </View>
-      )}
-      initialRouteName={languageTxt?.reactStackKeys?.user?.home}
-      screenOptions={{
-        tabBarActiveTintColor: colorConstants?.gold,
-        tabBarInactiveTintColor: colorConstants?.gray,
-        headerShown: false,
-      }}>
-      <BottomBar.Screen
-        name={languageTxt?.reactStackKeys?.user?.alerts}
-        component={Alerts}
-        options={{
-          tabBarIcon: ({color}) => (
-            <MaterialCommunityIcons
-              name="alert"
-              color={color}
-              size={dimensionConstants?.iconSmall}
-            />
-          ),
-        }}
-      />
-      <BottomBar.Screen
-        name={languageTxt?.reactStackKeys?.user?.eTransactions}
-        component={ETransactions}
-        options={{
-          tabBarIcon: ({color}) => (
-            <MaterialCommunityIcons
-              name="swap-horizontal"
-              color={color}
-              size={dimensionConstants?.iconSmall}
-            />
-          ),
-        }}
-      />
-      <BottomBar.Screen
-        name={languageTxt?.reactStackKeys?.user?.home}
-        component={Home}
-        options={{
-          tabBarButton: props => (
-            <TabBarAdvancedButton bgColor={colorConstants?.iconBg} {...props} />
-          ),
-        }}
-      />
-      <BottomBar.Screen
-        name={languageTxt?.reactStackKeys?.user?.addAccount}
-        component={AddAccount}
-        options={{
-          tabBarIcon: ({color}) => (
-            <MaterialCommunityIcons
-              name="bank-plus"
-              color={color}
-              size={dimensionConstants?.iconSmall}
-            />
-          ),
-        }}
-      />
-      <BottomBar.Screen
-        name={languageTxt?.reactStackKeys?.user?.statement}
-        component={AccountStatement}
-        options={{
-          tabBarIcon: ({color}) => (
-            <MaterialCommunityIcons
-              name="file-document-multiple"
-              color={color}
-              size={dimensionConstants?.iconSmall}
-            />
-          ),
-        }}
-      />
-    </BottomBar.Navigator>
+    <>
+      <CustomSnack isOpen={errorSnack} setOpen={() => setErrorSnack('')} />
+      <BottomBar.Navigator
+        tabBar={props => (
+          <View style={styles.navigatorContainer}>
+            <BottomTabBar {...props} />
+            {IS_IPHONE_X && <View style={styles.xFillLine} />}
+          </View>
+        )}
+        initialRouteName={languageTxt?.reactStackKeys?.user?.home?.name}
+        screenOptions={{
+          tabBarActiveTintColor: colorConstants?.gold,
+          tabBarInactiveTintColor: colorConstants?.gray,
+          headerShown: false,
+        }}>
+        <BottomBar.Screen
+          name={languageTxt?.reactStackKeys?.user?.alerts}
+          component={Alerts}
+          options={{
+            tabBarIcon: ({color}) => (
+              <MaterialCommunityIcons
+                name="alert"
+                color={color}
+                size={dimensionConstants?.iconSmall}
+              />
+            ),
+          }}
+        />
+        <BottomBar.Screen
+          name={languageTxt?.reactStackKeys?.user?.eTransactions?.name}
+          component={ETransactionsNavigator}
+          options={{
+            tabBarIcon: ({color}) => (
+              <MaterialCommunityIcons
+                name="swap-horizontal"
+                color={color}
+                size={dimensionConstants?.iconSmall}
+              />
+            ),
+          }}
+        />
+        <BottomBar.Screen
+          name={languageTxt?.reactStackKeys?.user?.home?.name}
+          component={HomeNavigator}
+          options={{
+            tabBarButton: props => (
+              <TabBarAdvancedButton
+                bgColor={colorConstants?.iconBg}
+                {...props}
+              />
+            ),
+          }}
+        />
+        <BottomBar.Screen
+          name={languageTxt?.reactStackKeys?.user?.addAccount}
+          component={AddAccount}
+          options={{
+            tabBarIcon: ({color}) => (
+              <MaterialCommunityIcons
+                name="bank-plus"
+                color={color}
+                size={dimensionConstants?.iconSmall}
+              />
+            ),
+          }}
+        />
+        <BottomBar.Screen
+          name={languageTxt?.reactStackKeys?.user?.statement}
+          component={AccountStatement}
+          options={{
+            tabBarIcon: ({color}) => (
+              <MaterialCommunityIcons
+                name="file-document-multiple"
+                color={color}
+                size={dimensionConstants?.iconSmall}
+              />
+            ),
+          }}
+        />
+      </BottomBar.Navigator>
+    </>
   );
 };
 

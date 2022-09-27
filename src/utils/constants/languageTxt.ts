@@ -67,9 +67,29 @@ export const languageTxt: any = {
     },
     user: {
       name: 'User',
-      home: 'Home',
+      home: {
+        name: 'Root Home',
+        screen: 'Home',
+      },
       alerts: 'Alerts',
-      eTransactions: 'E-Transactions',
+      eTransactions: {
+        name: 'E-Transactions',
+        menus: 'E-Transactions Menus',
+        eRedemption: {
+          form: 'Form',
+          name: 'E-Redemption',
+          declaration: 'Declaration',
+        },
+        eConversion: {
+          form: 'Form',
+          name: 'E-Conversion',
+          declaration: 'Declaration',
+        },
+        summary: {
+          name: 'Summary',
+          transactionSummary: 'Pending Transaction(s) Summary',
+        },
+      },
       addAccount: 'Add Account',
       accountStatement: 'Account Statement',
       statement: 'Statement',
@@ -117,10 +137,13 @@ export const languageTxt: any = {
   ddlSourceOfIncomeError: 'Income Source is required',
   ddlBankError: 'Bank is required',
   ddlAdvisorError: 'Advisor is required',
+  txtNamePerCNICError: 'Name (as per CNIC)  is required',
+  txtStartDateError: 'Start Date  is required',
+  txtEndDateError: 'End Date  is required',
 
+  unexpectedError: 'Something went wrong!',
   emailPatternError: 'Invalid email address',
   invalidUsernameOrPassword: 'Invalid credentials!',
-  unexpectedError: 'Something went wrong!',
   tryAgainLater: 'Could not post at this time. Try again later.',
 
   // InputPlaceholder
@@ -149,9 +172,9 @@ export const languageTxt: any = {
   txtBankAccountNum: 'Bank Acc. Number',
   txtIBAN_Number: 'IBAN Number',
   txtKnow: 'How Did You Know About Pak Oman?',
-
   txtNamePerCNIC: 'Name (as per CNIC)',
-  txtNamePerCNICError: 'Name (as per CNIC)  is required',
+  txtStartDate: 'Start Date',
+  txtEndDate: 'End Date',
 
   // Select
   ddlGender: 'Select Gender',
@@ -201,4 +224,21 @@ export const languageTxt: any = {
   pensionInvestorTitle: 'Pension Investor',
   pensionInvestorDetail:
     'Manage your employee retirement funds and endowment plans with confidence through our professional advisory services and wide product range.',
+
+  // ETransactions
+  eTransactionsDeclaration1: 'I/We, the undersigned, hereby declare that:',
+  eTransactionsDeclaration2:
+    'I acknowledge having read and understood the e-transact Terms and Conditions and agree to be bound by whatever written in the e-transact Terms and Conditions.',
+  eTransactionsDeclaration3:
+    'I understand that redemption / conversion of units will be made in accordance with the terms and conditions as mentioned in the Constitutive Documents of selected funds;',
+  eTransactionsDeclaration4:
+    'I understand that the redemption / conversion price of units will differ due to Front-end Load/Back-end Load where applicable;',
+  eTransactionsDeclaration5:
+    'I understand that in case of mutual funds operating under forward pricing mechanism, the price of units applicable for redemption / conversion will not be known at the time of redemption / conversion;',
+  eTransactionsDeclaration6:
+    'I understand that redemption / conversion of units transaction may be subject to capital gain tax in accordance with the requirements of Income Tax Ordinance, 2001 applicable in Pakistan and the directives issued by Federal Board of Revenue (FBR) from time to time;',
+  eTransactionsDeclaration7:
+    'I understand that once the redemption / conversion request has been received through e-transact by Alfalah GHP Investment Management Limited, it cannot be cancelled/altered.',
+
+  generateReport: 'Generate Report',
 };

@@ -1,13 +1,16 @@
 import React, {useState} from 'react';
 import {View} from 'react-native';
+import moment from 'moment';
 import {useForm, Controller} from 'react-hook-form';
 import {useNavigation} from '@react-navigation/native';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import {styles} from './styles';
 import {languageTxt} from '../../../../../utils/constants/languageTxt';
 import {fontConstants} from '../../../../../utils/constants/fontConstants';
 import {colorConstants} from '../../../../../utils/constants/colorConstants';
 import {dimensionConstants} from '../../../../../utils/constants/dimensionConstants';
+import {PeriodBy} from '../../../../shared/CustomDatePicker/CustomDatePicker.interface';
 
 import Skeleton from '../../../../shared/Skeleton';
 import CustomTitle from '../../../../shared/CustomTitle';
@@ -15,11 +18,14 @@ import CustomSnack from '../../../../shared/CustomSnack';
 import CustomInput from '../../../../shared/CustomInput';
 import ValidationMessage from '../../../../shared/ValidationMessage';
 import CustomDoubleButton from '../../../../shared/CustomDoubleButton';
+import dateFormat from '../../../../../utils/constants/dateFormat';
+import CustomDatePicker from '../../../../shared/CustomDatePicker';
 
 const PensionInvestor = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [errorSnack, setErrorSnack] = useState('');
   const [formError, setFormError] = useState(null);
+  const [showModalDOB, setShowModalDOB] = useState(false);
 
   const navigation = useNavigation();
   // const signupMutation = useSignUp();
@@ -29,6 +35,8 @@ const PensionInvestor = () => {
     setError,
     clearErrors,
     handleSubmit,
+    getValues,
+    setValue,
     formState: {errors},
     reset,
   } = useForm({
@@ -284,8 +292,18 @@ const PensionInvestor = () => {
                   placeHolder={languageTxt?.txtDOB}
                   autoCapitalize="none"
                   onBlur={onBlur}
+                  disabled={true}
                   value={value}
-                  handleChange={(value: String) => onChange(value)}
+                  rightIcon={
+                    <MaterialCommunityIcons
+                      name="calendar"
+                      size={dimensionConstants?.iconSmall}
+                      color={colorConstants?.primary}
+                    />
+                  }
+                  rightIconClick={() => {
+                    setShowModalDOB(true);
+                  }}
                 />
               )}
               name="txtDOB"
@@ -294,6 +312,38 @@ const PensionInvestor = () => {
                   value: true,
                   message: languageTxt?.txtDOBError,
                 },
+              }}
+            />
+
+            <CustomDatePicker
+              showDropDown={showModalDOB}
+              setShowDropDown={setShowModalDOB}
+              modalTitle={'Select Date of Birth'}
+              data={
+                getValues('txtDOB')
+                  ? {
+                      startDate: moment(
+                        getValues('txtDOB'),
+                        dateFormat.DOB_FORMAT,
+                      ).format(dateFormat.CALENDAR_FORMAT),
+                      endDate: moment(
+                        getValues('txtDOB'),
+                        dateFormat.DOB_FORMAT,
+                      ).format(dateFormat.CALENDAR_FORMAT),
+                      period: PeriodBy.BY_DAY,
+                    }
+                  : {
+                      startDate: '',
+                      endDate: '',
+                      period: PeriodBy.BY_DAY,
+                    }
+              }
+              onChange={(date: any) => {
+                const dateDOB = moment(
+                  date?.startDate,
+                  dateFormat.CALENDAR_FORMAT,
+                ).format(dateFormat.DOB_FORMAT);
+                setValue('txtDOB', dateDOB);
               }}
             />
 

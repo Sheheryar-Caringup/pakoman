@@ -7,6 +7,7 @@ export const colorConstants = {
   transparent: 'transparent',
 
   primaryOpacity: '#aec7cc',
+  whiteOpacity: 'rgba(255,255,255,0.6)',
   blackOpacity: 'rgba(0,0,0,0.5)',
   lightBlackOpacity: 'rgba(0,0,0,0.3)',
   xLightBlackOpacity: 'rgba(0,0,0,0.2)',
@@ -20,7 +21,7 @@ export const colorConstants = {
   secondary: '#656465',
   gold: '#ca970b',
 
-  primaryLight: '#d59b28ba',
+  primaryLight: 'rgba(213, 155, 40, 0.1)',
   secondaryLight: '#656465ba',
   goldLight: '#f0e9d7',
 

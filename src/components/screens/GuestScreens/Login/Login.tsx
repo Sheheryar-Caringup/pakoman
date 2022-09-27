@@ -24,7 +24,7 @@ import CustomDoubleButton from '../../../shared/CustomDoubleButton';
 
 import LogoIcon from '../../../../assets/logo/logo.png';
 
-const Login = () => {
+const Login = ({navigation}: any) => {
   const [isLoading, setIsLoading] = useState(false);
   const [errorSnack, setErrorSnack] = useState('');
   const [formError, setFormError] = useState(null);
@@ -33,7 +33,7 @@ const Login = () => {
 
   const [passwordStatus, setPasswordStatus] = useState(true);
 
-  const navigation = useNavigation();
+  // const navigation = useNavigation();
   const loginMutation = useLogin();
 
   const {
@@ -74,7 +74,7 @@ const Login = () => {
         addUserProfile(data?.userProfile);
 
         if (data?.code == '1') {
-          navigation.navigate(languageTxt?.reactStackKeys?.user?.name);
+          navigation.replace(languageTxt?.reactStackKeys?.user?.name);
         }
       }
       setErrorSnack(data?.message);
@@ -184,7 +184,6 @@ const Login = () => {
                   </>
                 }
                 rightIconClick={() => setPasswordStatus(!passwordStatus)}
-                onEndEditing={handleSubmit(onSubmit)}
                 blurOnSubmit={true}
               />
             )}

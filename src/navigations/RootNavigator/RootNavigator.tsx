@@ -6,20 +6,14 @@ import {languageTxt} from '../../utils/constants/languageTxt';
 
 import GuestNavigator from '../GuestNavigator';
 import UserNavigator from '../UserNavigator';
-import Profile from '../../components/screens/Profile';
-import SplashScreen from '../../components/screens/SplashScreen';
 
 const rootStack = () => {
   const RootStack = createNativeStackNavigator();
   return (
     <NavigationContainer>
       <RootStack.Navigator
-        initialRouteName={languageTxt?.reactStackKeys?.splash}>
+        initialRouteName={languageTxt?.reactStackKeys?.guest?.name}>
         <RootStack.Group screenOptions={{headerShown: false}}>
-          <RootStack.Screen
-            name={languageTxt?.reactStackKeys?.splash}
-            component={SplashScreen}
-          />
           <RootStack.Screen
             name={languageTxt?.reactStackKeys?.guest?.name}
             component={GuestNavigator}
@@ -27,10 +21,6 @@ const rootStack = () => {
           <RootStack.Screen
             name={languageTxt?.reactStackKeys?.user?.name}
             component={UserNavigator}
-          />
-          <RootStack.Screen
-            name={languageTxt?.reactStackKeys?.profile}
-            component={Profile}
           />
         </RootStack.Group>
       </RootStack.Navigator>

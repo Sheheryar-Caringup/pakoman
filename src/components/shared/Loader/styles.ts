@@ -19,7 +19,7 @@ export const styles = (isLoading: any) => {
       zIndex: 999,
       alignContent: 'center',
       justifyContent: 'center',
-      backgroundColor: colorConstants?.white,
+      backgroundColor: colorConstants?.whiteOpacity,
       ...isLoadingStyles,
     },
     logo: {
