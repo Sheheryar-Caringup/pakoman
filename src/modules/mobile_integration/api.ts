@@ -72,6 +72,7 @@ const loginApi = async (username: string, password: string) => {
       }
       let accCode = '';
       let userProfile = {};
+
       if (success) {
         const getAccCode: any = await getMappedAccountApi(username);
         if (getAccCode?.success) {
@@ -82,6 +83,7 @@ const loginApi = async (username: string, password: string) => {
           }
         }
       }
+
       return {
         code: resultCode,
         accCode: accCode,
@@ -89,6 +91,104 @@ const loginApi = async (username: string, password: string) => {
         success: success,
         message: message,
       };
+    })
+    .catch(err => {
+      return {
+        success: false,
+        message: err?.message,
+      };
+    });
+};
+
+const signUpApi = async (
+  title: string,
+  email: string,
+  userID: string,
+  cellNumber: string,
+  accCode: string,
+  cnic: string,
+  dateofBirth: string,
+  accountType: string,
+) => {
+  return mobile_integration_instance({
+    method: 'post',
+    headers: {
+      SOAPAction: 'http://tempuri.org/SignUp',
+    },
+    data:
+      '<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">\
+            <soap:Body>\
+              <SignUp xmlns="http://tempuri.org/">\
+                <accCode>' +
+      accCode +
+      '</accCode>\
+                      <UserID>' +
+      userID +
+      '</UserID>\
+                      <Title>' +
+      title +
+      '</Title>\
+                      <AccountType>' +
+      accountType +
+      '</AccountType>\
+                      <CNIC>' +
+      cnic +
+      '</CNIC>\
+                      <Email>' +
+      email +
+      '</Email>\
+                      <CellNumber>' +
+      cellNumber +
+      '</CellNumber>\
+                      <DateofBirth>' +
+      dateofBirth +
+      '</DateofBirth>\
+                      <Key>' +
+      MOBILE_INTEGRATION_API_KEY +
+      '</Key>\
+              </SignUp>\
+        </soap:Envelope>',
+  })
+    .then(async (data: any) => {
+      var resultCode =
+        data?.['soap:Envelope']?.['soap:Body']?.['length'] > 0 &&
+        data?.['soap:Envelope']?.['soap:Body']?.[0]?.['SignUpResponse']?.[
+          'length'
+        ] > 0 &&
+        data?.['soap:Envelope']?.['soap:Body']?.[0]?.['SignUpResponse']?.[0]?.[
+          'SignUpResult'
+        ]?.['length'] > 0 &&
+        data?.['soap:Envelope']?.['soap:Body']?.[0]?.['SignUpResponse']?.[0]?.[
+          'SignUpResult'
+        ]?.[0];
+
+      // let message = '';
+      // let success = false;
+      // if (resultCode == '-1') {
+      //   message = 'Invalid Key';
+      // } else if (resultCode == '0') {
+      //   message = 'Invaild Username or Password';
+      // } else if (resultCode == '1') {
+      //   success = true;
+      //   message = 'Successful Login';
+      // } else if (resultCode == '2') {
+      //   message = 'Inactive User';
+      // } else if (resultCode == '3') {
+      //   success = true;
+      // } else if (resultCode == '4') {
+      //   message =
+      //     'Account locked for making too many unsuccessful login attempts';
+      // } else if (resultCode == '5') {
+      //   message = 'Password expired';
+      // } else if (resultCode == '7') {
+      //   message = 'CNIC expired';
+      // }
+      // return {
+      //   code: resultCode,
+      //   success: success,
+      //   message: message,
+      // };
+      return {};
     })
     .catch(err => {
       return {
@@ -162,4 +262,4 @@ const getMappedAccountApi = async (username: string) => {
     });
 };
 
-export {loginApi, getMappedAccountApi};
+export {signUpApi, loginApi, getMappedAccountApi};

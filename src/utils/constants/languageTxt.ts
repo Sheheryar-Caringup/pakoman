@@ -91,7 +91,11 @@ export const languageTxt: any = {
         },
       },
       addAccount: 'Add Account',
-      accountStatement: 'Account Statement',
+      accountStatement: {
+        name: 'Account Statement',
+        screen: 'Account Statement Screen',
+        pdf: 'Account Statement PDF',
+      },
       statement: 'Statement',
     },
     profile: 'Personal Information',
@@ -102,6 +106,7 @@ export const languageTxt: any = {
       chartInfo: 'chartInfo',
       userInfo: 'userInfo',
     },
+    generateAccountStatment: 'generateAccountStatment',
   },
   noDataAvailable: 'No data available',
   // ErrorMessages

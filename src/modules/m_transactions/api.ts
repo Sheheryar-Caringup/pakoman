@@ -8,6 +8,8 @@ import {languageTxt} from '../../utils/constants/languageTxt';
 
 const M_TRANSACTIONS_API_KEY = '5a64df56-rt45-yu41-8974-5f64ad56f4a5';
 const getDashboardUserInfoApi = async (accCode: any) => {
+  console.log(accCode, 'resultCoderesultCode accCode');
+
   return mTransactions_instance({
     method: 'post',
     headers: {
@@ -28,6 +30,7 @@ const getDashboardUserInfoApi = async (accCode: any) => {
     </soap:Envelope>',
   })
     .then((data: any) => {
+      console.log(data, 'resultCoderesultCode DashboardUserInfo');
       var newData =
         data?.['soap:Envelope']?.['soap:Body']?.[0]?.[
           'DashboardUserInfoResponse'
@@ -44,6 +47,7 @@ const getDashboardUserInfoApi = async (accCode: any) => {
       };
     })
     .catch(err => {
+      console.log(err?.message, 'resultCoderesultCode err');
       return {
         success: false,
         message: err?.message,
@@ -94,4 +98,54 @@ const getDashboardChartInfoApi = async () => {
     });
 };
 
-export {getDashboardUserInfoApi, getDashboardChartInfoApi};
+const getGenerateAccountStatmentApi = async (
+  dateFrom: string,
+  dateTo: string,
+) => {
+  const accCode = await getAccCode();
+  return mTransactions_instance({
+    method: 'post',
+    headers: {
+      SOAPAction: 'http://www.sidathyder.com.pk/Generate_AccountStatment',
+    },
+    data:
+      '<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">\
+      <soap:Body>\
+        <Generate_AccountStatment xmlns="http://www.sidathyder.com.pk/">\
+          <_accountCode>' +
+      accCode +
+      '</_accountCode>\
+          <_dateFrom>' +
+      dateFrom +
+      '</_dateFrom>\
+          <_dateTo>' +
+      dateTo +
+      '</_dateTo>\
+        </Generate_AccountStatment>\
+      </soap:Body>\
+    </soap:Envelope>',
+  })
+    .then((data: any) => {
+      console.log(data, 'datadatadatadatadatadata');
+      var newData =
+        data?.['soap:Envelope']?.['soap:Body']?.[0]?.[
+          'Generate_AccountStatmentResponse'
+        ]?.[0]?.['Generate_AccountStatmentResult']?.[0];
+      return {
+        success: true,
+        data: newData,
+      };
+    })
+    .catch(err => {
+      return {
+        success: false,
+        message: err?.message,
+      };
+    });
+};
+
+export {
+  getDashboardUserInfoApi,
+  getDashboardChartInfoApi,
+  getGenerateAccountStatmentApi,
+};

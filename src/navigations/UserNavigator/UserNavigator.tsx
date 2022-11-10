@@ -16,14 +16,14 @@ import Home from '../../components/screens/UserScreen/Home';
 import Alerts from '../../components/screens/UserScreen/Alerts';
 import ETransactionsNavigator from './ETransactionsNavigator';
 import AddAccount from '../../components/screens/UserScreen/AddAccount';
-import AccountStatement from '../../components/screens/UserScreen/AccountStatement';
+import HomeNavigator from './HomeNavigator';
+import AccountStatementNavigator from './AccountStatementNavigator';
 
 import TabBarAdvancedButton from '../../components/shared/TabBarAdvancedButton';
 import CustomSnack from '../../components/shared/CustomSnack';
 import {asyncLogoutService} from '../../config/asyncStorage/asynDataStore';
 import {useQueryClient} from 'react-query';
 import {useNavigation} from '@react-navigation/native';
-import HomeNavigator from './HomeNavigator';
 
 const BottomBar = createBottomTabNavigator();
 
@@ -31,33 +31,33 @@ const UserNavigator = () => {
   const navigation = useNavigation();
   const queryClient = useQueryClient();
   const [errorSnack, setErrorSnack] = useState('');
-  useEffect(() => {
-    const backAction = () => {
-      Alert.alert('Hold on!', 'Are you sure you want to go back?', [
-        {
-          text: 'Cancel',
-          onPress: () => null,
-          style: 'cancel',
-        },
-        {
-          text: 'YES',
-          onPress: () => {
-            asyncLogoutService(languageTxt, queryClient);
-            navigation.navigate(languageTxt?.reactStackKeys?.guest?.name);
-            BackHandler.exitApp();
-          },
-        },
-      ]);
-      return true;
-    };
+  // useEffect(() => {
+  //   const backAction = () => {
+  //     Alert.alert('Hold on!', 'Are you sure you want to go back?', [
+  //       {
+  //         text: 'Cancel',
+  //         onPress: () => null,
+  //         style: 'cancel',
+  //       },
+  //       {
+  //         text: 'YES',
+  //         onPress: () => {
+  //           asyncLogoutService(languageTxt, queryClient);
+  //           navigation.navigate(languageTxt?.reactStackKeys?.guest?.name);
+  //           BackHandler.exitApp();
+  //         },
+  //       },
+  //     ]);
+  //     return true;
+  //   };
 
-    const backHandler = BackHandler.addEventListener(
-      'hardwareBackPress',
-      backAction,
-    );
+  //   const backHandler = BackHandler.addEventListener(
+  //     'hardwareBackPress',
+  //     backAction,
+  //   );
 
-    return () => backHandler.remove();
-  }, []);
+  //   return () => backHandler.remove();
+  // }, []);
   return (
     <>
       <CustomSnack isOpen={errorSnack} setOpen={() => setErrorSnack('')} />
@@ -126,8 +126,8 @@ const UserNavigator = () => {
           }}
         />
         <BottomBar.Screen
-          name={languageTxt?.reactStackKeys?.user?.statement}
-          component={AccountStatement}
+          name={languageTxt?.reactStackKeys?.user?.accountStatement?.name}
+          component={AccountStatementNavigator}
           options={{
             tabBarIcon: ({color}) => (
               <MaterialCommunityIcons

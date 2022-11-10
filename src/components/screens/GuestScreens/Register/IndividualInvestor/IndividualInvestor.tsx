@@ -8,6 +8,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import {styles} from './styles';
 import {languageTxt} from '../../../../../utils/constants/languageTxt';
 import {fontConstants} from '../../../../../utils/constants/fontConstants';
+import {useSignUp} from '../../../../../modules/mobile_integration/hooks';
 import {colorConstants} from '../../../../../utils/constants/colorConstants';
 import {dimensionConstants} from '../../../../../utils/constants/dimensionConstants';
 import {PeriodBy} from '../../../../shared/CustomDatePicker/CustomDatePicker.interface';
@@ -28,7 +29,7 @@ const IndividualInvestor = () => {
   const [showModalDOB, setShowModalDOB] = useState(false);
 
   const navigation = useNavigation();
-  // const signupMutation = useSignUp();
+  const signupMutation = useSignUp();
 
   const {
     control,
@@ -41,33 +42,48 @@ const IndividualInvestor = () => {
     reset,
   } = useForm({
     defaultValues: {
-      txtName: '',
-      txtRegEmail: '',
-      txtLoginID: '',
-      txtRegMobileNum: '',
-      txtRegNo: '',
-      txtCNIC: '',
-      txtDOB: '',
+      title: '',
+      email: '',
+      userID: '',
+      cellNumber: '',
+      accCode: '',
+      cnic: '',
+      dateofBirth: '',
     },
     mode: 'onTouched',
   });
 
   const onSubmit = async (data: any) => {
-    // setIsLoading(true);
-    // clearErrors();
-    // setFormError(null);
-    // const mutationArgs = {
-    //   data,
-    //   onSuccessCb,
-    //   onErrorCb,
-    // };
-    // signupMutation.mutate(mutationArgs);
+    setIsLoading(true);
+    clearErrors();
+    setFormError(null);
+
+    const accountType = 'individual';
+    const {title, email, userID, cellNumber, accCode, cnic, dateofBirth} = data;
+    const mutationArgs: any = {
+      title,
+      email,
+      userID,
+      cellNumber,
+      accCode,
+      cnic,
+      dateofBirth,
+      accountType,
+      onSuccessCb,
+      onErrorCb,
+    };
+
+    signupMutation.mutate(mutationArgs);
   };
 
   const onSuccessCb = async (data: any) => {
+    console.log(data, 'signUpApisignUpApi onSuccessCb');
     try {
+      if (data?.success) {
+      } else {
+        setErrorSnack(data?.message);
+      }
       setIsLoading(false);
-      setErrorSnack('');
       // navigation.replace(theme?.strings?.otpScreen);
     } catch (error) {
       setIsLoading(false);
@@ -139,21 +155,20 @@ const IndividualInvestor = () => {
           )}
 
           <View style={styles?.loginContainer}>
-            {/* txtName */}
+            {/* title */}
             <Controller
               control={control}
               render={({field: {onChange, onBlur, value}}) => (
                 <CustomInput
-                  error={errors.txtName ? true : false}
-                  errorMsg={errors.txtName ? errors.txtName.message : ''}
+                  error={errors.title ? true : false}
+                  errorMsg={errors.title ? errors.title.message : ''}
                   placeHolder={languageTxt?.txtName}
-                  autoCapitalize="none"
                   onBlur={onBlur}
                   value={value}
                   handleChange={(value: String) => onChange(value.trim())}
                 />
               )}
-              name="txtName"
+              name="title"
               rules={{
                 required: {
                   value: true,
@@ -161,23 +176,22 @@ const IndividualInvestor = () => {
                 },
               }}
             />
-            {/* txtRegEmail */}
+            {/* email */}
             <Controller
               control={control}
               render={({field: {onChange, onBlur, value}}) => (
                 <CustomInput
-                  error={errors.txtRegEmail ? true : false}
-                  errorMsg={
-                    errors.txtRegEmail ? errors.txtRegEmail?.message : ''
-                  }
+                  error={errors.email ? true : false}
+                  errorMsg={errors.email ? errors.email?.message : ''}
                   placeHolder={languageTxt?.txtRegEmail}
                   autoCapitalize="none"
+                  keyboardType={'email-address'}
                   onBlur={onBlur}
                   value={value}
                   handleChange={(value: String) => onChange(value)}
                 />
               )}
-              name="txtRegEmail"
+              name="email"
               rules={{
                 required: {
                   value: true,
@@ -189,21 +203,20 @@ const IndividualInvestor = () => {
                 },
               }}
             />
-            {/* txtLoginID */}
+            {/* userID */}
             <Controller
               control={control}
               render={({field: {onChange, onBlur, value}}) => (
                 <CustomInput
-                  error={errors.txtLoginID ? true : false}
-                  errorMsg={errors.txtLoginID ? errors.txtLoginID?.message : ''}
+                  error={errors.userID ? true : false}
+                  errorMsg={errors.userID ? errors.userID?.message : ''}
                   placeHolder={languageTxt?.txtUserName}
-                  autoCapitalize="none"
                   onBlur={onBlur}
                   value={value}
                   handleChange={(value: String) => onChange(value)}
                 />
               )}
-              name="txtLoginID"
+              name="userID"
               rules={{
                 required: {
                   value: true,
@@ -211,25 +224,21 @@ const IndividualInvestor = () => {
                 },
               }}
             />
-            {/* txtRegMobileNum */}
+            {/* cellNumber */}
             <Controller
               control={control}
               render={({field: {onChange, onBlur, value}}) => (
                 <CustomInput
-                  error={errors.txtRegMobileNum ? true : false}
-                  errorMsg={
-                    errors.txtRegMobileNum
-                      ? errors.txtRegMobileNum?.message
-                      : ''
-                  }
+                  error={errors.cellNumber ? true : false}
+                  errorMsg={errors.cellNumber ? errors.cellNumber?.message : ''}
                   placeHolder={languageTxt?.txtRegMobileNum}
-                  autoCapitalize="none"
+                  keyboardType={'phone-pad'}
                   onBlur={onBlur}
                   value={value}
                   handleChange={(value: String) => onChange(value)}
                 />
               )}
-              name="txtRegMobileNum"
+              name="cellNumber"
               rules={{
                 required: {
                   value: true,
@@ -237,21 +246,20 @@ const IndividualInvestor = () => {
                 },
               }}
             />
-            {/* txtRegNo */}
+            {/* accCode */}
             <Controller
               control={control}
               render={({field: {onChange, onBlur, value}}) => (
                 <CustomInput
-                  error={errors.txtRegNo ? true : false}
-                  errorMsg={errors.txtRegNo ? errors.txtRegNo?.message : ''}
+                  error={errors.accCode ? true : false}
+                  errorMsg={errors.accCode ? errors.accCode?.message : ''}
                   placeHolder={languageTxt?.txtRegNo}
-                  autoCapitalize="none"
                   onBlur={onBlur}
                   value={value}
                   handleChange={(value: String) => onChange(value)}
                 />
               )}
-              name="txtRegNo"
+              name="accCode"
               rules={{
                 required: {
                   value: true,
@@ -259,21 +267,21 @@ const IndividualInvestor = () => {
                 },
               }}
             />
-            {/* txtCNIC */}
+            {/* cnic */}
             <Controller
               control={control}
               render={({field: {onChange, onBlur, value}}) => (
                 <CustomInput
-                  error={errors.txtCNIC ? true : false}
-                  errorMsg={errors.txtCNIC ? errors.txtCNIC?.message : ''}
+                  error={errors.cnic ? true : false}
+                  errorMsg={errors.cnic ? errors.cnic?.message : ''}
                   placeHolder={languageTxt?.txtCNIC}
-                  autoCapitalize="none"
+                  keyboardType={'numeric'}
                   onBlur={onBlur}
                   value={value}
                   handleChange={(value: String) => onChange(value)}
                 />
               )}
-              name="txtCNIC"
+              name="cnic"
               rules={{
                 required: {
                   value: true,
@@ -281,15 +289,16 @@ const IndividualInvestor = () => {
                 },
               }}
             />
-            {/* txtDOB */}
+            {/* dateofBirth */}
             <Controller
               control={control}
               render={({field: {onChange, onBlur, value}}) => (
                 <CustomInput
-                  error={errors.txtDOB ? true : false}
-                  errorMsg={errors.txtDOB ? errors.txtDOB?.message : ''}
+                  error={errors.dateofBirth ? true : false}
+                  errorMsg={
+                    errors.dateofBirth ? errors.dateofBirth?.message : ''
+                  }
                   placeHolder={languageTxt?.txtDOB}
-                  autoCapitalize="none"
                   onBlur={onBlur}
                   disabled={true}
                   value={value}
@@ -305,7 +314,7 @@ const IndividualInvestor = () => {
                   }}
                 />
               )}
-              name="txtDOB"
+              name="dateofBirth"
               rules={{
                 required: {
                   value: true,
@@ -319,14 +328,14 @@ const IndividualInvestor = () => {
               setShowDropDown={setShowModalDOB}
               modalTitle={'Select Date of Birth'}
               data={
-                getValues('txtDOB')
+                getValues('dateofBirth')
                   ? {
                       startDate: moment(
-                        getValues('txtDOB'),
+                        getValues('dateofBirth'),
                         dateFormat.DOB_FORMAT,
                       ).format(dateFormat.CALENDAR_FORMAT),
                       endDate: moment(
-                        getValues('txtDOB'),
+                        getValues('dateofBirth'),
                         dateFormat.DOB_FORMAT,
                       ).format(dateFormat.CALENDAR_FORMAT),
                       period: PeriodBy.BY_DAY,
@@ -342,7 +351,7 @@ const IndividualInvestor = () => {
                   date?.startDate,
                   dateFormat.CALENDAR_FORMAT,
                 ).format(dateFormat.DOB_FORMAT);
-                setValue('txtDOB', dateDOB);
+                setValue('dateofBirth', dateDOB);
               }}
             />
 

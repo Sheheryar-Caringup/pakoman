@@ -18,4 +18,15 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  buttonContainer: {
+    flexDirection: 'row',
+  },
+  extraStyles: {
+    flex: 1,
+    flexDirection: 'column',
+    alignSelf: 'flex-start',
+  },
+  icon: {
+    marginBottom: dimensionConstants?.marginSmall,
+  },
 });

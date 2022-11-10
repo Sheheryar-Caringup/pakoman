@@ -106,6 +106,7 @@ const CustomDatePicker = ({
       body={
         <Calendar
           onDayPress={handleSelectDate}
+          onDayLongPress={handleSelectDate} // Debug
           theme={{
             //@ts-ignore
             'stylesheet.calendar.header': calendarStyles,
